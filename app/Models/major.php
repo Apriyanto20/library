@@ -10,17 +10,35 @@ class major extends Model
     use HasFactory;
     protected $table = 'majors';
     protected $fillable = [
-        'id',
-        'name',
-        'id_fakultas',
+        'kode_major',
+        'kode_fakultas',
+        'major',
     ];
 
-    public function clases()
+    public static function createMajor()
     {
-        return $this->belongsTo(User::class, 'id', 'id_major');
+        $latestCode = self::orderBy('kode_major', 'desc')->value('kode_major');
+        $latestCodeNumber = intval(substr($latestCode, 2));
+        $nextCodeNumber = $latestCodeNumber ? $latestCodeNumber + 1 : 1;
+        $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
+        return 'M' . $formattedCodeNumber;
     }
+
+    // public function fakultas()
+    // {
+    //     return $this->hasMany(fakultas::class, 'kode_fakultas', 'fakultas');
+    // }
     public function fakultas()
     {
-        return $this->hasMany(fakultas::class, 'id_fakultas', 'id');
+        return $this->belongsTo(fakultas::class, 'kode_fakultas', 'kode_fakultas');
+    }
+
+    // public function major()
+    // {
+    //     return $this->hasMany(major::class, 'kode_major');
+    // }
+    public function Mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class, 'kode_major');
     }
 }

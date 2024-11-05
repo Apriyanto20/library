@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('loan_packages', function (Blueprint $table) {
             $table->id();
-            $table->enum('package', ['normal', 'custom']);
+            $table->string('kode_package');
+            $table->string('package');
             $table->timestamps();
         });
     }

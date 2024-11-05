@@ -52,12 +52,5 @@ class User extends Authenticatable
         ];
     }
 
-    public function loan_transactions()
-    {
-        return $this->belongsTo(loan_transactions::class, 'id', 'id_user');
-    }
-
-    public function kelas(){
-        return $this->hasMany(clases::class, 'id_kelas', 'id');
-    }
+    
 }

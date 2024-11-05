@@ -10,33 +10,42 @@ class books extends Model
     use HasFactory;
     protected $table = 'books';
     protected $fillable = [
-        'id',
+        'kode_book',
         'tittle',
         'author',
         'publisher',
         'place_of_publicaton',
         'publication_year',
-        'id_fakultas',
-        'id_genre',
-        'id_source',
+        'kode_fakultas',
+        'kode_genre',
+        'kode_source',
         'bookshelf',
     ];
 
+    public static function createBooks()
+    {
+        $latestCode = self::orderBy('kode_book', 'desc')->value('kode_book');
+        $latestCodeNumber = intval(substr($latestCode, 2));
+        $nextCodeNumber = $latestCodeNumber ? $latestCodeNumber + 1 : 1;
+        $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
+        return 'B' . $formattedCodeNumber;
+    }
+
     public function detail_loan()
     {
-        return $this->belongsTo(detail_loan_transactions::class, 'id', 'id_book');
+        return $this->belongsTo(detail_loan_transactions::class, 'id', 'kode_book');
     }
 
     public function fakultas()
     {
-        return $this->hasMany(fakultas::class, 'id_fakultas', 'id');
+        return $this->belongsTo(fakultas::class, 'kode_fakultas', 'kode_fakultas');
     }
     public function genres()
     {
-        return $this->hasMany(genres::class, 'id_genre', 'id');
+        return $this->belongsTo(genres::class, 'kode_genre', 'kode_genre');
     }
-    public function source()
+    public function sources()
     {
-        return $this->hasMany(sources::class, 'id_source', 'id');
+        return $this->belongsTo(sources::class, 'kode_source', 'kode_source');
     }
 }

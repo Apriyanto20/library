@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('clases', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('id_major');
+            $table->string('kode_kelas');
+            $table->string('kode_major');
+            $table->string('kelas');
             $table->timestamps();
         });
     }

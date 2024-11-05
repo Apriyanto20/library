@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_book');
             $table->string('tittle');
             $table->string('author');
             $table->string('publisher');
             $table->string('place_of_publication');
             $table->integer('publication_year');
-            $table->integer('id_fakultas');
-            $table->integer('id_genre');
-            $table->integer('id_source');
+            $table->string('kode_fakultas');
+            $table->string('kode_genre');
+            $table->string('kode_source');
             $table->string('bookshelf');
             $table->text('synopsis');
             $table->string('ebook');

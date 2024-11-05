@@ -10,17 +10,27 @@ class clases extends Model
     use HasFactory;
     protected $table = 'clases';
     protected $fillable = [
-        'id',
-        'name',
-        'id_major',
+        'kode_kelas',
+        'kode_major',
+        'kelas',
+
     ];
 
-    public function users()
+    public static function createKelas()
     {
-        return $this->belongsTo(User::class, 'id', 'id_kelas');
+        $latestCode = self::orderBy('kode_kelas', 'desc')->value('kode_kelas');
+        $latestCodeNumber = intval(substr($latestCode, 2));
+        $nextCodeNumber = $latestCodeNumber ? $latestCodeNumber + 1 : 1;
+        $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
+        return 'K' . $formattedCodeNumber;
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class, 'kode_kelas', 'kode_kelas');
     }
     public function major()
     {
-        return $this->hasMany(major::class, 'id_major', 'id');
+        return $this->belongsTo(major::class, 'kode_major', 'kode_major');
     }
 }
