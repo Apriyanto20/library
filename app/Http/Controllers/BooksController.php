@@ -64,7 +64,10 @@ class BooksController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $detailBook = books::where('id', $id)->first();
+        return view('pages.books.show')->with([
+            'detailBook' => $detailBook
+        ]);
     }
 
     /**

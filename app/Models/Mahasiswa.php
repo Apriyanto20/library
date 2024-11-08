@@ -9,23 +9,21 @@ class Mahasiswa extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
         'nim',
-        'kode_fakultas',
-        'kode_major',
+        'name',
+        'kode',
         'kode_kelas',
         'address',
         'place_of_birth',
         'date_birth',
-        'email',
         'gender',
-        'password',
+        'phone',
     ];
 
     public static function createMahasiswa()
     {
         $latestCode = self::orderBy('nim', 'desc')->value('nim');
-        $latestCodeNumber = intval(substr($latestCode, 1));
+        $latestCodeNumber = intval(substr($latestCode, 3));
         $nextCodeNumber = $latestCodeNumber ? $latestCodeNumber + 1 : 1;
         $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
         return 'MHS' . $formattedCodeNumber;

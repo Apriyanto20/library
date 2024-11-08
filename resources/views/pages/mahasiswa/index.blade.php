@@ -18,136 +18,66 @@
                                 NIM</label>
                             <input type="text" id="nim" name="nim"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan NIM" required />
+                                placeholder="Masukan NIM" value="{{ $nim }}" required readonly />
                         </div>
                         <div class="mb-5">
-                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Username</label>
-                            <input type="text" id="username" name="username"
+                            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Nama</label>
+                            <input type="text" id="nama" name="nama"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Username" required autofocus />
+                                placeholder="Masukan Nama" required autofocus />
                         </div>
                         <div class="mb-5">
-                            <label for="tempat_lahir"
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Kelas</label>
+                            <select
+                                class="js-example-placeholder-single js-states form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                id="kode_kelas" name="kode_kelas" data-placeholder="Pilih Kelas">
+                                <option value="">Pilih...</option>
+                                @foreach ($kelas as $k)
+                                    <option value="{{ $k->kode_kelas }}">{{ $k->kelas }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-5">
+                            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Alamat</label>
+                            <input type="text" id="address" name="address"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan Alamat" required />
+                        </div>
+                        <div class="mb-5">
+                            <label for="place_of_birth"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Tempat Lahir</label>
-                            <input type="text" id="tempat_lahir" name="tempat_lahir"
+                            <input type="text" id="place_of_birth" name="place_of_birth"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Tempat Lahir" required autofocus />
+                                placeholder="Masukan Tempat Lahir" required />
                         </div>
                         <div class="mb-5">
-                            <label for="tanggal_lahir"
+                            <label for="date_birth"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Tanggal Lahir</label>
-                            <input type="date" id="tanggal_lahir" name="tanggal_lahir"
+                            <input type="date" id="date_birth" name="date_birth"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Tanggal Lahir" required autofocus />
+                                placeholder="Masukan Tempat Lahir" required />
                         </div>
                         <div class="mb-5">
-                            <label for="jk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Jenis Kelamin</label>
-                            <input type="text" id="jk" name="jk"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Jenis Kelamin" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="dusun" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Dusun</label>
-                            <input type="text" id="dusun" name="dusun"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Dusun" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="rtrw" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                RT / RW</label>
-                            <input type="text" id="rtrw" name="rtrw"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan RT / RW" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="kelurahan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Kelurahan</label>
-                            <input type="text" id="kelurahan" name="kelurahan"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Kelurahan" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="kecamatan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Kecamatan</label>
-                            <input type="text" id="kecamatan" name="kecamatan"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Kecamatan" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="kota" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Kota</label>
-                            <input type="text" id="kota" name="kota"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Nama Kota" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="kode_pos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Kode Pos</label>
-                            <input type="text" id="kode_pos" name="kode_pos"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Kode Pos" required autofocus />
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Jenis
+                                Kelamin</label>
+                            <select
+                                class="js-example-placeholder-single js-states form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                id="gender" name="gender" data-placeholder="Pilih Jenis Kelamin">
+                                <option value="">Pilih...</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
                         </div>
                         <div class="mb-5">
                             <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 No Handphone</label>
                             <input type="text" id="no_hp" name="no_hp"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan No Handphone" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="pendidikan_terakhir"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Pendidikan Terakhir</label>
-                            <input type="text" id="pendidikan_terakhir" name="pendidikan_terakhir"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Pendidikan Terakhir" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="asal_sekolah"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Asal Sekolah</label>
-                            <input type="text" id="asal_sekolah" name="asal_sekolah"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Asal Sekolah" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="jurusan_sekolah"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Jurusan Sekolah</label>
-                            <input type="text" id="jurusan_sekolah" name="jurusan_sekolah"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Jurusan Sekolah" required autofocus />
-                        </div>
-                        <div class="mb-5">
-                            <label for="tahun_lulus"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Tahun Lulus</label>
-                            <input type="text" id="tahun_lulus" name="tahun_lulus"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Tahun Lulus" required autofocus />
-                        </div>
-                        <div>
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Kelas</label>
-                            <select class="js-example-placeholder-single js-states form-control w-[600px] m-6"
-                                id="sts" name="sts" data-placeholder="Pilih Kelas">
-                                <option value="">Pilih...</option>
-                                {{-- @foreach ($kelas as $k)
-                                    <option value="{{ $k->kode_kelas }}">{{ $k->kelas }}</option>
-                                @endforeach --}}
-                            </select>
-                        </div>
-                        <div class="mb-5">
-                            <label for="tahun_angkatan"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Tahun Angkatan</label>
-                            <input type="text" id="tahun_angkatan" name="tahun_angkatan"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Tahun Angkatan" required autofocus />
+                                placeholder="Masukan No HP" required />
                         </div>
                         <button type="submit"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -176,10 +106,6 @@
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        FAKULTAS
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         JURUSAN
                                     </th>
                                     <th scope="col"
@@ -200,15 +126,11 @@
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        EMAIL
+                                        JENIS KELAMIN
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        GENDER
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        PASSWORD
+                                        NO HP
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -298,14 +220,9 @@
                         return data;
                     }
                 }, {
-                    data: 'fakultas',
+                    data: 'kelas',
                     render: (data, type, row) => {
-                        return data.fakultas;
-                    }
-                }, {
-                    data: 'major',
-                    render: (data, type, row) => {
-                        return data.major;
+                        return data.major.major;
                     }
                 }, {
                     data: 'kelas',
@@ -328,17 +245,7 @@
                         return data;
                     }
                 }, {
-                    data: 'email',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                },{
                     data: 'gender',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                }, {
-                    data: 'password',
                     render: (data, type, row) => {
                         return data;
                     }
@@ -350,13 +257,13 @@
                     render: (data, type, row) => {
                         let editUrl =
                             `<button type="button" data-id="${data.id}"
-                                                    data-modal-target="sourceModal" data-nim="${data.nim}" data-nik="${data.nik}"
+                                                    data-modal-target="sourceModal" data-nim="${data.nim}" data-nik="${data.nim}"
                                                     onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                    <i class="fas fa-edit"></i>
                                                 </button>`;
                         let deleteUrl =
-                            `<button onclick="return jurusanDelete('${data.id}','${data.jurusan}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
+                            `<button onclick="return jurusanDelete('${data.id}','${data.nim}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
                         return `<div style="text-align:center">${editUrl} ${deleteUrl}</div>`;
                     }
                 }, ],

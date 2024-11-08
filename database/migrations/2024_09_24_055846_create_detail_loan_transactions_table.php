@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_loan_transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_loan');
+            $table->string('id_loan');
             $table->integer('id_book');
             $table->integer('id_package');
             $table->string('return_status');

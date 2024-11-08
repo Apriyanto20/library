@@ -10,7 +10,7 @@ class MahasiswaAPIController extends Controller
 {
     public function get_all()
     {
-        $mahasiswa = Mahasiswa::with(['fakultas', 'major', 'kelas'])->get();
+        $mahasiswa = Mahasiswa::with(['fakultas', 'kelas','kelas.major'])->get();
         return response()->json([
             'mahasiswa' => $mahasiswa,
         ]);

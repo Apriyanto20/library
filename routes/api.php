@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\BooksAPIController;
+use App\Http\Controllers\API\DetailLoanTransactionAPIController;
 use App\Models\major;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
@@ -19,7 +20,9 @@ use App\Http\Controllers\API\SourceAPIController;
 use App\Http\Controllers\API\FakultasAPIController;
 use App\Http\Controllers\API\MahasiswaAPIController;
 use App\Http\Controllers\API\LoanPackageAPIController;
+use App\Http\Controllers\API\LoanTransactionAPIController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\LoantransactionsController;
 
 Route::get('/fakultas', [FakultasAPIController::class, 'get_all'])->name('fakultas.get');
 Route::post('/fakultas_add', [FakultasController::class, 'store']);
@@ -60,6 +63,10 @@ Route::get('/book', [BooksAPIController::class, 'get_all'])->name('book.get');
 Route::post('/book_add', [BooksController::class, 'store']);
 Route::patch('/book_update/{id}', [BooksController::class, 'update']);
 Route::delete('/book_delete/{id}', [BooksController::class, 'destroy']);
+
+Route::get('/loanTransactions', [LoanTransactionAPIController::class, 'get_all'])->name('loanTransactions.get');
+Route::get('/detailloanTransactions', [DetailLoanTransactionAPIController::class, 'get_all'])->name('detailloanTransactions.get');
+Route::get('/detail/{id}', [LoanTransactionAPIController::class, 'get_where'])->name('detail.get');
 
 
 

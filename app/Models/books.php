@@ -20,6 +20,10 @@ class books extends Model
         'kode_genre',
         'kode_source',
         'bookshelf',
+        'synopsis',
+        'ebook',
+        'cover',
+        'books_status',
     ];
 
     public static function createBooks()
@@ -31,9 +35,9 @@ class books extends Model
         return 'B' . $formattedCodeNumber;
     }
 
-    public function detail_loan()
+    public function detailLoan()
     {
-        return $this->belongsTo(detail_loan_transactions::class, 'id', 'kode_book');
+        return $this->hasMany(detail_loan_transactions::class, 'kode_book');
     }
 
     public function fakultas()

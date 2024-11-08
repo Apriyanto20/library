@@ -18,16 +18,16 @@ class detail_loan_transactions extends Model
         'receipt_date',
         'monetary_fine',
     ];
-    public function loan_transactions()
+    public function loanTransaction()
     {
-        return $this->hasMany(loan_transactions::class, 'code_loan', 'code_loan');
+        return $this->belongsTo(loan_transactions::class, 'id_loan', 'code_loan');
     }
-    public function loan_package()
+    public function loanPackage()
     {
-        return $this->hasMany(loan_package::class, 'id_package', 'id');
+        return $this->belongsTo(loan_package::class, 'id_package', 'kode_package');
     }
-    public function books()
+    public function book()
     {
-        return $this->hasMany(books::class, 'id_book', 'id');
+        return $this->belongsTo(books::class, 'id_book', 'kode_book');
     }
 }

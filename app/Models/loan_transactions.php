@@ -19,11 +19,13 @@ class loan_transactions extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
     public function detail_loan()
     {
-        return $this->belongsTo(detail_loan_transactions::class, 'code_loan', 'code_loan');
+        return $this->hasMany(detail_loan_transactions::class, 'code_loan');
     }
+
+
 }

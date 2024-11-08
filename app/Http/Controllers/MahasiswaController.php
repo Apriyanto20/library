@@ -8,6 +8,7 @@ use App\Models\clases;
 use App\Models\fakultas;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
 {
@@ -40,7 +41,28 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nim' => $request->input('nim'),
+            'name' => $request->input('nama'),
+            'kode_kelas' => $request->input('kode_kelas'),
+            'address' => $request->input('address'),
+            'place_of_birth' => $request->input('place_of_birth'),
+            'date_birth' => $request->input('date_birth'),
+            'gender' => $request->input('gender'),
+            'phone' => $request->input('no_hp'),
+        ];
+
+        $dataUser = [
+            'name' => $request->input('nama'),
+            'email' => $request->input('nim'),
+            'password' => Hash::make($request->input('nim')),
+            'role' => 'User'
+        ];
+
+        Mahasiswa::create($data);
+        User::create($dataUser);
+
+        return back()->with('message_add', 'Data ditambahkan');
     }
 
     /**

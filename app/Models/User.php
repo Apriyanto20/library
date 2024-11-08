@@ -18,14 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'nim',
-        'id_fakultas',
-        'id_kelas',
-        'address',
-        'place_of_birth',
-        'date_birth',
         'email',
-        'gender',
         'password',
         'role',
     ];
@@ -52,5 +45,8 @@ class User extends Authenticatable
         ];
     }
 
-    
+    public function loanTrnsactions()
+    {
+        return $this->hasMany(loan_transactions::class, 'id_user');
+    }
 }

@@ -1,18 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('book') }}
+            {{ __('Mahasiswa') }}
         </h2>
     </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 space-y-6">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 space-y-6 mt-5">
+                <diiv class="flex items-center justify-between">
+                    <div>DATA PEMINJAMAN</div>
+                    <div>
+                        <a href="{{ route('loanTransactions.create') }}">Tambah Data</a>
+                    </div>
+                </diiv>
+            </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 space-y-6 mt-5">
                 <!-- Data Section -->
                 <div class="bg-gray-100 p-6 rounded-lg">
-                    <h3 class="text-lg font-semibold mb-4">Data book</h3>
+                    <h3 class="text-lg font-semibold mb-4">Data Peminjaman</h3>
                     <div class="overflow-x-auto">
-                        <table class="table table-bordered overflow-x-auto" id="book-datatable">
+                        <table class="table table-bordered" id="loanTransactions-datatable">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col"
@@ -21,35 +29,31 @@
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Kode book
+                                        KODE PEMINJAMAN
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Tittle
+                                        BUKU
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Author
+                                        PAKET PEMINJAMAN
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        fakultas
+                                        STATUS PENGEMBALIAN
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        genre
+                                        TANGGAL PENGEMBALIAN
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        bookshelf
+                                        DENDA
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        books_status
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Action
+                                        ACTION
                                     </th>
                                 </tr>
                             </thead>
@@ -59,83 +63,77 @@
             </div>
         </div>
     </div>
-
     <script>
         $(document).ready(function() {
-            console.log('RUN!');
-            $('#book-datatable').DataTable({
+            // console.log('RUN!');
+            let url = window.location.href;
+            let code = url.split('/').pop();
+            $('#loanTransactions-datatable').DataTable({
                 ajax: {
-                    url: 'api/book',
-                    dataSrc: 'book'
+                    url: `/api/detail/${code}`,
+                    dataSrc: 'detail'
                 },
                 initComplete: function() {
                     // Menengahkan teks di semua sel pada header (baris pertama)
-                    $('#book-datatable thead th').css('text-align', 'center');
+                    $('#loanTransactions-datatable thead th').css('text-align', 'center');
                 },
                 columns: [{
-                    data: 'no',
-                    render: (data, type, row, meta) => {
-                        return `<div style="text-align:center">${meta.row + 1}.</div>`;;
-                    }
-                }, {
-                    data: 'kode_book',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                }, {
-                    data: 'tittle',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                }, {
-                    data: 'author',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                }, {
-                    data: 'fakultas',
-                    render: (data, type, row) => {
-                        return data.fakultas;
-                    }
-                }, {
-                    data: 'genres',
-                    render: (data, type, row) => {
-                        return data.genre;
-                    }
-                }, {
-                    data: 'bookshelf',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                }, {
-                    data: 'books_status',
-                    render: (data, type, row) => {
-                        return data;
-                    }
-                }, {
-                    data: {
-                        id: 'id',
-                        name: 'book'
+                        data: 'no',
+                        render: (data, type, row, meta) => {
+                            return `<div style="text-align:center">${meta.row + 1}.</div>`;;
+                        }
+                    }, {
+                        data: 'id_loan',
+                        render: (data, type, row) => {
+                            return data;
+                        }
                     },
-                    render: (data, type, row) => {
-                        let editUrl =
-                            `<button type="button" data-id="${data.id}"
-                                                    data-modal-target="sourceModal" data-kode_book="${data.kode_book}" data-name="${data.book}"
+                    {
+                        data: 'book',
+                        render: (data, type, row) => {
+                            return data.tittle;
+                        }
+                    }, {
+                        data: 'loan_package',
+                        render: (data, type, row) => {
+                            return data.package;
+                        }
+                    }, {
+                        data: 'return_status',
+                        render: (data, type, row) => {
+                            return data;
+                        }
+                    },{
+                        data: 'receipt_date',
+                        render: (data, type, row) => {
+                            return data;
+                        }
+                    }, {
+                        data: 'monetary_fine',
+                        render: (data, type, row) => {
+                            return data;
+                        }
+                    },{
+                        data: {
+                            id: 'id',
+                            nim: 'nim',
+                            code_loan: 'code_loan'
+                        },
+                        render: (data, type, row) => {
+                            let editUrl =
+                                `<button type="button" data-id="${data.id}"
+                                                    data-modal-target="sourceModal" data-nim="${data.nim}" data-nik="${data.nim}"
                                                     onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                    <i class="fas fa-edit"></i>
                                                 </button>`;
-                        let deleteUrl =
-                            `<button onclick="return bookDelete('${data.id}','${data.book}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
-                        let idBook = data.id;
-                        let detailUrlTemplate =
-                            `{{ route('book.show', ':idBook') }}`;
-                        let detailUrl = detailUrlTemplate.replace(':idBook', idBook);
-                        let detailLink =
-                            `<a href="${detailUrl}" class="bg-emerald-500 hover:bg-emerald-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-eye"></i></a>`;
-                        return `<div style="text-align:center">${detailLink} ${editUrl} ${deleteUrl}</div>`;
-                    }
-                }, ],
+                            let deleteUrl =
+                                `<button onclick="return jurusanDelete('${data.id}','${data.nim}')" class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white"><i class="fas fa-trash"></i></button>`;
+
+                            return `<div style="text-align:center">${editUrl} ${deleteUrl}</div>`;
+                        }
+                    },
+                ],
             });
         });
 
@@ -143,16 +141,15 @@
             const formModal = document.getElementById('formSourceModal');
             const modalTarget = button.dataset.modalTarget;
             const id = button.dataset.id;
-            const kode_book = button.dataset.kode_book;
-            const name = button.dataset.name;
-            // const id = button.dataset.id;
+            const jurusan = button.dataset.jurusan;
+            const nim = button.dataset.nim;
             console.log(button.dataset);
-            let url = "{{ route('book.update', ':id') }}".replace(':id', id);
+            let url = "{{ route('major.update', ':id') }}".replace(':id', id);
             let status = document.getElementById(modalTarget);
             document.getElementById('title_source').innerText = `Update
-            book ${name}`;
-            document.getElementById('kode_book_edit').value = kode_book;
-            document.getElementById('nm_book').value = name;
+            jurusan ${jurusan}`;
+            document.getElementById('kd_jurusan').value = nim;
+            document.getElementById('nm_jurusan').value = jurusan;
 
             document.getElementById('formSourceButton').innerText = 'Simpan';
             document.getElementById('formSourceModal').setAttribute('action', url);
@@ -176,10 +173,10 @@
             status.classList.toggle('hidden');
         }
 
-        const bookDelete = async (id, name) => {
+        const jurusanDelete = async (id, name) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus ${name} ?`);
             if (tanya) {
-                await axios.post(`/book/${id}`, {
+                await axios.post(`/major/${id}`, {
                         '_method': 'DELETE',
                         '_token': $('meta[name="csrf-token"]').attr('content')
                     })

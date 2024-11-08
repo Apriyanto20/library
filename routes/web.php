@@ -6,6 +6,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoanPackageController;
+use App\Http\Controllers\LoantransactionsController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\ProfileController;
@@ -23,7 +24,7 @@ Route::resource('source', SourceController::class)->middleware(['auth']);
 Route::resource('package', LoanPackageController::class)->middleware(['auth']);
 Route::resource('mahasiswa', MahasiswaController::class)->middleware(['auth']);
 Route::resource('book', BooksController::class)->middleware(['auth']);
-
+Route::resource('loanTransactions', LoantransactionsController::class)->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

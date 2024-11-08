@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('bookshelf');
             $table->text('synopsis');
             $table->string('ebook');
+            $table->string('cover');
             $table->string('books_status');
             $table->timestamps();
         });

@@ -37,10 +37,10 @@
                                     </div>
                                     <!-- Email Address -->
                                     <div class="mb-4">
-                                        <x-input-label for="email" :value="__('Email')" />
+                                        <x-input-label for="email" :value="__('Username')" />
                                         <x-text-input
                                             class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
-                                            id="email" class="block mt-1 w-full" type="email" name="email"
+                                            id="email" class="block mt-1 w-full" type="text" name="email"
                                             :value="old('email')" required autocomplete="username" />
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
@@ -56,12 +56,27 @@
                                     </div>
 
                                     <!-- Confirm Password -->
-                                    <div class="mb  -4">
+                                    <div class="mb-4">
                                         <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
                                         <x-text-input id="password_confirmation" class="block mt-1 w-full"
                                             type="password" name="password_confirmation" required
                                             autocomplete="new-password" />
+
+                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                    </div>
+
+                                    <!-- Role -->
+                                    <div class="mb-4">
+                                        <x-input-label for="password_confirmation" :value="__('Role')" />
+
+                                        <select
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            name="role" data-placeholder="Pilih Role">
+                                            <option value="">Pilih...</option>
+                                            <option value="Administrator">Administrator</option>
+                                            <option value="Pustakawan">Pustakawan</option>
+                                        </select>
 
                                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                     </div>

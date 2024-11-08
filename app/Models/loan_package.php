@@ -24,6 +24,6 @@ class loan_package extends Model
 
     public function detail_loan()
     {
-        return $this->belongsTo(detail_loan_transactions::class, 'kode_package', 'kode_package');
+        return $this->hasMany(detail_loan_transactions::class, 'kode_package');
     }
 }

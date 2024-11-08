@@ -23,10 +23,10 @@
                                         <!-- Email Address -->
                                         <div>
                                             <x-input-label class="mb-2 ml-1 font-bold text-xs text-slate-700"
-                                                for="email" :value="__('Email')" />
+                                                for="email" :value="__('Username')" />
                                             <x-text-input
                                                 class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
-                                                id="email" class="block mt-1 w-full" type="email" name="email"
+                                                id="email" class="block mt-1 w-full" type="text" name="email"
                                                 :value="old('email')" required autofocus placeholder="Email"
                                                 autocomplete="username" />
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
